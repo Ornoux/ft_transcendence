@@ -1,0 +1,7 @@
+NestJS :
+
+
+Controller --> Gere les requetes HTTP entrantes, et renvoie en fonction de ce qu'il recoit
+               une reponse, en utilisant un Service
+
+Decorators --> 
