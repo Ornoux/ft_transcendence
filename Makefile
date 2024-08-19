@@ -1,8 +1,8 @@
 all:
-	cd ft_transcendence && docker-compose up --build -d
+	docker-compose up --build -d
 
 clean:
-	cd ft_transcendence && docker-compose down
+	docker-compose down
 
 fclean:
 	make clean

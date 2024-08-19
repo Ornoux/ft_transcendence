@@ -1,23 +1,39 @@
+version: '3'
 services:
   db:
     image: postgres:15
     container_name: postgresql
-    env_file:
-      .env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  web_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/usr/src/app  # Montée du code source
     ports:
-      - "5432:5432"
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DJANGO_SETTINGS_MODULE: ft_transcendence.settings
+
   adminer:
     image: adminer
     container_name: my_adminer
     ports:
       - "8080:8080"
-    restart: always
 
 volumes:
   postgres_data:
+
+
+
+
+
+
