@@ -1,9 +1,8 @@
 all:
-	cd app && docker-compose up --build -d
-	cd app && npm run start:dev
+	cd ft_transcendence && docker-compose up --build -d
 
 clean:
-	cd app && docker-compose down
+	cd ft_transcendence && docker-compose down
 
 fclean:
 	make clean
