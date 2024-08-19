@@ -1,23 +1,35 @@
 services:
-  db:
-    image: postgres:15
-    container_name: postgresql
-    env_file:
-      .env
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-  adminer:
-    image: adminer
-    container_name: my_adminer
-    ports:
-      - "8080:8080"
-    restart: always
+	backend_django:
+		container_name: django
+		env_file:
+			- .env
+		environment:
+			DB_NAME: ${DB_NAME} #-----DB-----#
+			DB_USER: ${DB_USER} #
+			DB_PASSWORD: ${DB_PASSWORD} #
+		build:
+			context: ft_transcendence/DockerfileDjango
+			dockerfile: Dockerfile
+		restart: unless-stopped
+	db:
+		image: postgres:15
+		container_name: postgresql
+		env_file:
+			.env
+		environment:
+			POSTGRES_USER: ${DB_USER}
+			POSTGRES_PASSWORD: ${DB_PASSWORD}
+			POSTGRES_DB: ${DB_NAME}
+		volumes:
+			- postgres_data:/var/lib/postgresql/data
+		ports:
+			- "5432:5432"
+	adminer:
+		image: adminer
+		container_name: my_adminer
+		ports:
+			- "8080:8080"
+		restart: always
 
 volumes:
-  postgres_data:
+	postgres_data:
