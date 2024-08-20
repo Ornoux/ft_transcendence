@@ -1,24 +1,35 @@
 version: '3'
 services:
   db:
-    image: postgres:15
     container_name: postgresql
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+    build:
+      context: ./postgresql
+      dockerfile: Dockerfile    
+    env_file:
+      - ./backend/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    environment:
+       - POSTGRES_USER=${DB_USER}
+       - POSTGRES_PASSWORD=${DB_PASSWORD}
+       - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:5432
 
-  app:
-    build: .
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     restart: unless-stopped
     depends_on:
       - db
+    env_file:
+      - ./backend/.env
     volumes:
-      - /home/npatron/Documents/ft_transcendence/app
-      - ./app:/app
+      - /home/npatron/Documents/ft_transcendence/backend
+      - ./backend:/backend
     ports:                                                 
       - 8000:8000 
 

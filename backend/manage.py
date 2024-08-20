@@ -15,8 +15,12 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    print("JE SUIS LA POUR DES TESTS")
+    print("JE SUIS LA POUR DES TESTS")
+    print(os.environ.get('DB_NAME'))
     execute_from_command_line(sys.argv)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
+
+

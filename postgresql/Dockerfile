@@ -5,20 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/19 20:25:37 by npatron           #+#    #+#              #
-#    Updated: 2024/08/20 09:38:07 by npatron          ###   ########.fr        #
+#    Created: 2024/08/20 18:03:25 by npatron           #+#    #+#              #
+#    Updated: 2024/08/20 18:18:43 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM python:3.12-alpine
+FROM postgres:16.4-alpine
 
-WORKDIR /app 
+RUN apk update && apk upgrade
 
-COPY ./app /app
-COPY requirements.txt /app
+COPY script/init_postgresql.sh script
 
-RUN pip install --no-cache-dir -r /app/requirements.txt
-
-EXPOSE 8000
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["bash", "script"]
