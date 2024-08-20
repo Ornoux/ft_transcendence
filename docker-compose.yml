@@ -10,18 +10,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  web_backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./app:/usr/src/app  # Montée du code source
-    ports:
-      - "8000:8000"
+  app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
     depends_on:
       - db
-    environment:
-      DJANGO_SETTINGS_MODULE: ft_transcendence.settings
+    volumes:
+      - /home/npatron/Documents/ft_transcendence/app
+      - ./app:/app
+    ports:                                                 
+      - 8000:8000 
 
   adminer:
     image: adminer
