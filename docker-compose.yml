@@ -1,23 +1,39 @@
 services:
   db:
-    image: postgres:15
     container_name: postgresql
-    env_file:
-      .env
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    build:
+      context: ./postgresql
+      dockerfile: Dockerfile
     ports:
-      - "5432:5432"
+      - 5432:5432
+    env_file:
+      - .env
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file:
+      - ./backend/.env
+    volumes:
+      - /home/npatron/Documents/ft_transcendence/backend
+      - ./backend:/backend
+    ports:                                                 
+      - 8000:8000 
+
   adminer:
     image: adminer
     container_name: my_adminer
     ports:
       - "8080:8080"
-    restart: always
 
-volumes:
-  postgres_data:
+
+
+
+
+
+
