@@ -1,20 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    urls.py                                            :+:      :+:    :+:    #
+#    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/18 15:30:41 by npatron           #+#    #+#              #
-#    Updated: 2024/08/18 15:44:11 by npatron          ###   ########.fr        #
+#    Created: 2024/08/19 20:25:37 by npatron           #+#    #+#              #
+#    Updated: 2024/08/24 11:04:42 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-from django.urls import path
+FROM python:3.12-alpine
 
-from . import views
+WORKDIR /backend
 
-urlpatterns = [
-    path("", views.index, name="index"),
-    path("test", views.test, name="index"),
-]
+COPY . /backend
+COPY requirements.txt /backend
+
+RUN apk add gcc musl-dev
+RUN pip install --no-cache-dir -r /backend/requirements.txt
+
+EXPOSE 8000
+
+CMD ["sh", "migrate.sh"]

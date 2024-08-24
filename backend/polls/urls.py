@@ -1,22 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
+#    urls.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/19 17:59:52 by npatron           #+#    #+#              #
-#    Updated: 2024/08/19 18:44:50 by npatron          ###   ########.fr        #
+#    Created: 2024/08/18 15:30:41 by npatron           #+#    #+#              #
+#    Updated: 2024/08/20 11:20:33 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+from django.urls import path
 
-RUN apk update && apk upgrade && \
-	apk add --no-cache python3 py3-pip && \
-	python -m pip install Django && \
-	touch requirements.txt
-	
-COPY requirements/requirements.txt requirements.txt
+from . import views
 
-RUN	
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("test", views.test, name="index"),
+]
