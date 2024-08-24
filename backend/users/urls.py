@@ -1,25 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
+#    urls.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/19 20:25:37 by npatron           #+#    #+#              #
-#    Updated: 2024/08/24 16:57:44 by npatron          ###   ########.fr        #
+#    Created: 2024/08/18 15:30:41 by npatron           #+#    #+#              #
+#    Updated: 2024/08/24 18:38:19 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM python:3.12-alpine
+from django.urls import path, include
 
-WORKDIR /backend
+from . import views
 
-COPY . /backend
-COPY requirements.txt /backend
-
-RUN apk add gcc musl-dev
-RUN pip install --no-cache-dir -r /backend/requirements.txt
-
-EXPOSE 8000
-
-CMD ["sh", "migrate.sh"]
+urlpatterns = [
+    path("", views.index, name="index"),
+	path("api/", include('core.api.urls'))
+]

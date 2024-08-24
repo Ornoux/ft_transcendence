@@ -23,7 +23,21 @@ services:
       - /home/npatron/Documents/ft_transcendence/backend
       - ./backend:/backend
     ports:                                                 
-      - 8000:8000 
+      - 8000:8000
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - /home/npatron/Documents/ft_transcendence/frontend
+      - ./frontend:/app
+    ports:
+      - 5173:5173
 
   adminer:
     image: adminer

@@ -2,3 +2,6 @@ Django==4.2.3
 django-environ==0.9.0
 psycopg2-binary
 python-dotenv
+djangorestframework
+django-cors-headers
+
