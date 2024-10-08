@@ -5,7 +5,8 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 
 ALLOWED_HOSTS = []
 
@@ -16,6 +17,7 @@ INSTALLED_APPS = [
     'authentication',
 	'api',
 	'oauth',
+    'pongMulti',
 	'rest_framework',
 	'rest_framework_simplejwt',
 	'corsheaders',
@@ -163,6 +165,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
+		'pongMulti': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
         # Add other apps here if needed
     },
 }
@@ -185,3 +192,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+print("Settings:")
+print(f"DEBUG: {DEBUG}")
+print(f"POSTGRES_DB: {os.getenv('POSTGRES_DB')}")

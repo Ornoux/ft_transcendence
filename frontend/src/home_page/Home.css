@@ -1,7 +1,172 @@
 
-h6 {
-    font-size: 1.5rem; /* Taille de la police */
-    color: #f00b0b; /* Couleur du texte */
-    font-weight: 500; /* Poids de la police */
-    margin: 20; /* Suppression des marges par défaut */
+
+@font-face {
+    font-family: 'Millimetre'; /* Nom de la police */
+    src: url('../assets/millimetre/Millimetre-Regular.otf') format('opentype'); /* Chemin relatif vers le fichier de police */
+    font-weight: normal;
+    font-style: normal;
 }
+
+.welcome-message {
+    position: absolute;
+    top: 20px; 
+    left: 20px;
+    font-family: 'Millimetre', sans-serif;
+    font-size: 24px; 
+    font-weight: bold;
+    color: #0e0404;
+    background-color: #363a45;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+
+
+.nameUserComponent,
+.nameFriendComponent {
+      font-family: 'Millimetre', sans-serif;
+      font-size: 18px;
+      text-align: center;
+      color: #FAF3DD;
+      padding: 8px;
+      padding-bottom: 3px;
+      width: 85px;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+
+
+.nameUserComponent-active,
+.nameFriendComponent-active {
+        font-family: 'Millimetre', sans-serif;
+        font-size: 18px;
+        text-align: center;
+        color: #AED9E0;
+        padding: 8px;
+        padding-bottom: 3px;
+        width: 85px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+}
+  
+.center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  }
+  
+
+.btn-outline-dark {
+    padding-bottom: 3px;
+    border: 1px solid #5E6472;
+
+}
+
+.username {
+
+    font-family: 'Millimetre', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #f5f5f6;
+}
+
+.status.online {
+
+    font-family: 'Millimetre', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #B8F2E6;
+}
+
+.status.offline {
+
+    font-family: 'Millimetre', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #FFA69E;
+}
+
+.friends-list {
+    height: 300px;
+    border-radius: 50px;
+    border: 4px solid #ffa69e;
+    width: 450px; 
+    background-color: transparent;
+}
+
+.buttonAdd {
+    font-family: 'Millimetre', sans-serif;
+    font-size: 16px;
+    color: #ffa69e;
+    margin-right: 15px;
+
+}
+
+.friend-item {
+    height: 60px;
+    width: 380px;
+    border-radius: 50px;
+    border-top: 2px solid #FAF3DD;
+    border-bottom: 2px solid #FAF3DD;
+    border-left: 2px solid #FAF3DD;
+    border-right: 2px solid #FAF3DD;;
+
+    background-color: transparent;
+    padding: 10px;
+    margin: 5px;
+    margin-left: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.friend-item td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 90px;
+}
+
+.profile-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.noUsers {
+    font-family: 'Millimetre', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 60px;
+    color: #FAF3DD;
+}
+
+.users-list {
+	max-height: 200px;
+	overflow-x: hidden;
+    margin-right: 5px;
+}
+  
+  .users-list.scroll {
+	overflow-y: auto;
+  }
+  
+  .users-list.scroll::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #2a2c31;
+  }
+  
+  .users-list.scroll::-webkit-scrollbar-thumb
+  {
+	border: 2px solid #000000;
+	border-radius: 20px;
+	background-color: #AED9E0;
+  }

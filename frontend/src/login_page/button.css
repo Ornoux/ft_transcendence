@@ -2,17 +2,25 @@
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+@font-face {
+    font-family: 'Millimetre'; /* Nom de la police */
+    src: url('../assets/millimetre/Millimetre-Regular.otf') format('opentype'); /* Chemin relatif vers le fichier de police */
+    font-weight: normal;
+    font-style: normal;
+}
+
 .custom-button {
 	position: absolute; 
 	top: 66.3vh;
 	left: 63vw;
-	background-color: #0454EE; 
-	border-color: #0454EE;
-	color: rgb(132, 185, 247); 
+	background-color: #1c2e56; 
+	border-color: #1c2e56;
+	/* color: rgb(132, 185, 247);  */
+	color: #fff;
 	box-shadow: 0px 4px 6px rgba(0, 2, 10, 0.5);
 	padding: 0.2vw 0.8vw; 
 	font-size: 1vw; 
-	font-family: 'Manuale', sans-serif;
+	font-family: 'Millimetre', sans-serif;
 	font-weight: bold ;
 	border-radius: 20px; 
 	transition: transform 0.2s ease; 
@@ -29,7 +37,7 @@
 	box-shadow: 0px 1vw 2vw rgba(0, 2, 10, 0.5);
 	padding: 1.2vw 2.2vw; 
 	font-size: 1.1vw; 
-	font-family: 'Manuale', sans-serif;
+	font-family: 'Millimetre', sans-serif;
 	font-weight: bold ;
 	border-radius: 15px; 
 	transition: transform 0.2s ease; 
@@ -44,13 +52,13 @@
 		position: absolute;
 		top: 55.5vh;
 		left:57vw;
-		background-color: #0454EE; 
-		border-color: #0454EE; 
-		color: rgb(132, 185, 247); 
+		background-color: #1c2e56; 
+		border-color: #1c2e56; 
+		color: #fff; 
 		box-shadow: 0px 4px 6px rgba(0, 2, 10, 0.5);
 		padding: 0.2vw 0.8vw;
 		font-size: 1vw;
-		font-family: 'Manuale', sans-serif;
+		font-family: 'Millimetre', sans-serif;
 		font-weight: bold ;
 		border-radius: 20px; 
 		transition: transform 0.2s ease;

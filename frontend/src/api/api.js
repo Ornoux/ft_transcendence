@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const fetchData = async (codeFromUrl) => {
+// GET METHODS
+
+export const setJwt = async (codeFromUrl) => {
 	try {
 		const response = await axios.post("http://localhost:8000/oauth2/login/", {
 			code: codeFromUrl,
@@ -9,7 +11,7 @@ export const fetchData = async (codeFromUrl) => {
 		if (response.data.Error === "Failed during creation proccess, to DB")
 			return ;
 
-		localStorage.setItem("jwt", response.data.jwt);
+		const myJWT = localStorage.setItem("jwt", response.data.jwt);
 	} catch (error) {
 		console.error("Error during login:", error);
 	}
@@ -26,7 +28,6 @@ export const getUser = async () => {
 		
 		const response = await axios.get("http://localhost:8000/api/user/", config);
 
-		console.log("getUser:", response.data);
 		return response.data;
 	} catch (error) {
 		console.error("Error fetching user data:", error);
@@ -45,7 +46,6 @@ export const getAllUsers = async () => {
 		
 		const response = await axios.get("http://localhost:8000/api/users/", config);
 
-		console.log("getAllUsers", response.data);
 		return response.data;
 	} catch (error) {
 		console.error("Error fetching user data:", error);
@@ -53,4 +53,60 @@ export const getAllUsers = async () => {
 	}
 };
 
+export const getFriendsList = async () => {
+	try {
+		const token = localStorage.getItem('jwt');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		
+		const response = await axios.get("http://localhost:8000/api/userFriendsList/", config);
+
+		return response.data;
+	} catch (error) {
+		console.error("Error fetching user data:", error);
+		throw error;
+	}
+};
+
+export const getNotifs = async () => {
+	try {
+		const token = localStorage.getItem('jwt');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		
+		const response = await axios.get("http://localhost:8000/api/user/notifs/", config);
+
+		return response.data;
+	} catch (error) {
+		console.error("Error fetching user data:", error);
+		throw error;
+	}
+};
+
+
+// POST METHODS
+
+export const postInvite = async (myData) => {
+	try {
+		const token = localStorage.getItem('jwt');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		
+		const response = await axios.post("http://localhost:8000/api/sendInvite/", myData, config);
+
+		return response.data;
+	} catch (error) {
+		console.error("Error fetching user data:", error);
+		throw error;
+	}
+};
 
